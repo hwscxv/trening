@@ -35,3 +35,12 @@ while True:
         print('punkt dla uzytkownika')
         user_points += 1
 
+    # if user_input == 'papier' and pc_choice == 'nozyce':
+    #     print('punkt dla komputera')
+    #     pc_points += 1
+    # elif user_input == 'papier' and pc_choice == 'papier':
+    #     print('remis ')
+    # elif user_input == 'papier' and pc_choice == 'kamien':
+    #     print('punkt dla uzytkownika')
+    #     user_points += 1
+
