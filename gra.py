@@ -20,7 +20,11 @@ def find_indexes(word, letter):
 for _ in word:
     user_word.append('_')
 print("gra wisielec, odgadnij haslo ")
+
+
+
 while True:
+    
     print(user_word)
     letter = input('podaj litere ')
     found_indexes = find_indexes(word, letter)
@@ -32,10 +36,11 @@ while True:
             print('utrata wszystkich zyc, koniec gry')
             sys.exit(0)
 
-    for index in found_indexes:
-        user_word[index] = letter
+    else:
+        for index in found_indexes:
+            user_word[index] = letter
 
-    if "".join(user_word) == word:
-        print('brawo wygrana')
-        sys.exit(0)
-    
+        if "".join(user_word) == word:
+            print('brawo wygrana')
+            sys.exit(0)
+        

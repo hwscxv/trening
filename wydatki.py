@@ -1,7 +1,25 @@
+from pathlib import Path
+import csv
+
+
 expenses = []
+expenses_2 = []
 expense_type = ['dom', 'rozrywka', 'jedzenie', 'inny']
 month_value = {1:'styczen', 2:'luty', 3:'marzec', 4:'kwiecien', 5:'maj', 6:'czerwiec', 7:'lipiec', 8:'sierpien', 9:'wrzesien', 10:'pazdziernik', 11:'listipad', 12:'grudzien'}
 
+
+
+def save_to_file(month):
+    
+
+    
+    
+    
+    with open(f'./wydatki/expenses.txt', 'w', encoding='utf-8') as f:
+        f.write('\n'.join(f'{tup[0]}-{tup[1]}-{tup[2]}' for tup in expenses))
+
+
+    print('zapisano!')
 
 def add_expenses(month):
     
@@ -12,11 +30,10 @@ def add_expenses(month):
         
         expense_choice = int(input('wybierz kategorie '))
 
-        expense = (expense_amount, expense_type[expense_choice], month)
+        expense = [expense_amount, expense_type[expense_choice], month]
         expenses.append(expense)
         
-def show_expenses(month):
-   
+def show_expenses(month):   
     for expense_amount, expense_type, expense_month in expenses:
         if expense_month == month:
             print(f'{expense_amount} - {expense_type}')
@@ -25,7 +42,7 @@ def add_expense_type():
     expense_type.append(input('podaj nowa kategorie '))
 
 def show_stats(month):
-    # if expenses[month] > 0:
+    if len(expenses) > 0:
         print('Statystki wydatkow:')
         month_expenses = sum(expense_amount for expense_amount, _, expense_month in expenses if expense_month == month)
         number_of_expenses = sum(1 for _, _, expense_month in expenses if expense_month == month)
@@ -36,12 +53,23 @@ def show_stats(month):
         print('sredni wydatek tego miesiaca', average_month_expenses)
         print('liczba wydatkow tego miesiaca', number_of_expenses)
         print('wszystkie wydatki w tym roku', all_expenses_amount)
-    # else:
-    #     print('brak wydatkow')
+    else:
+        print('brak wydatkow do wyswietlenia')
+        
+        
 
+        
+        
+        
+        
+Path('./wydatki').mkdir(exist_ok=True)
+f = open('./wydatki/expenses.txt', "w")
 
 while True:
+             
     month = int(input('wybierz miesiac 1-12 '))
+    # load_tasks_from_file(month)
+    # load_from_file()
 
     while True:
         print()
@@ -51,6 +79,7 @@ while True:
         print('2. dodaj wydatek')
         print('3. nowy typ wydatku')
         print('4. statystyki wydatkow')
+        print('5. zapisz do pliku')
         user_choice = int(input('wybierz opcje'))
 
 
@@ -62,9 +91,11 @@ while True:
             add_expenses(month)
         if user_choice == 3:
             add_expense_type()
+            # print(expenses)
         if user_choice == 4:
             show_stats(month)
+        if user_choice == 5:
+            save_to_file(month)
             
-        
 
 
