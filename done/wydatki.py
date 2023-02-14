@@ -104,8 +104,8 @@ while True:
             # print(expenses)
         if user_choice == 4:
             show_stats(month)
-        if user_choice == 5:
-            save_to_file(month)
+        # if user_choice == 5:
+        #     save_to_file(month)
             
 
 
